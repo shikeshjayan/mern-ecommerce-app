@@ -47,20 +47,20 @@ const Wishlist = () => {
 
   if (wishlistItems.length === 0) {
     return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center">
-        <div className="bg-red-50 p-8 rounded-full mb-6">
-          <HeartOff className="w-20 h-20 text-red-400" />
+      <div className="min-h-[70vh] flex flex-col items-center justify-center p-6 text-center bg-gray-50 dark:bg-slate-950 transition-colors duration-300">
+        <div className="bg-red-50 dark:bg-red-950/20 p-8 rounded-full mb-6">
+          <HeartOff className="w-20 h-20 text-red-400 dark:text-red-500" />
         </div>
-        <h2 className="text-3xl font-extrabold text-gray-900 mb-4">
+        <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white mb-4">
           Your wishlist is empty
         </h2>
-        <p className="text-gray-500 max-w-md mb-8">
+        <p className="text-gray-500 dark:text-gray-400 max-w-md mb-8">
           Save your favorite items here to keep an eye on them. They'll be
           waiting for you!
         </p>
         <Link
           to="/products"
-          className="bg-orange-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-orange-700 transition-all shadow-lg hover:shadow-orange-200"
+          className="bg-orange-600 text-white px-10 py-4 rounded-xl font-bold hover:bg-orange-700 transition-all shadow-lg hover:shadow-orange-200 dark:hover:shadow-orange-900/40"
         >
           Explore Products
         </Link>
@@ -69,11 +69,11 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-gray-50 dark:bg-slate-950 min-h-screen transition-colors duration-300">
       <div className="flex items-center justify-between mb-10">
-        <h1 className="text-4xl font-black text-gray-900 flex items-center">
+        <h1 className="text-4xl font-black text-gray-900 dark:text-white flex items-center">
           My Wishlist
-          <span className="ml-4 bg-red-100 text-red-600 text-sm py-1.5 px-4 rounded-full font-bold">
+          <span className="ml-4 bg-red-100 dark:bg-red-950/40 text-red-600 dark:text-red-400 text-sm py-1.5 px-4 rounded-full font-bold">
             {wishlistItems.length} items
           </span>
         </h1>
@@ -93,7 +93,7 @@ const Wishlist = () => {
           )}
           <Link
             to="/products"
-            className="text-gray-500 hover:text-orange-600 font-bold flex items-center transition-all group"
+            className="text-gray-500 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 font-bold flex items-center transition-all group"
           >
             <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
             Continue Shopping
@@ -105,10 +105,10 @@ const Wishlist = () => {
         {wishlistItems.map((item) => (
           <div
             key={item._id}
-            className="group bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-500 flex flex-col"
+            className="group bg-white dark:bg-slate-900 rounded-3xl overflow-hidden shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-2xl transition-all duration-500 flex flex-col"
           >
             {/* Image Section */}
-            <div className="relative h-64 overflow-hidden bg-gray-50">
+            <div className="relative h-64 overflow-hidden bg-gray-50 dark:bg-slate-800">
               <img
                 src={item.image || "https://placehold.co/400x400?text=No+Image"}
                 alt={item.name}
@@ -132,21 +132,21 @@ const Wishlist = () => {
             {/* Content Section */}
             <div className="p-6 flex-1 flex flex-col">
               <div className="mb-4">
-                <p className="text-orange-600 text-xs font-bold uppercase tracking-wider mb-1">
+                <p className="text-orange-600 dark:text-orange-400 text-xs font-bold uppercase tracking-wider mb-1">
                   {item.category}
                 </p>
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors line-clamp-1">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors line-clamp-1">
                   {item.name}
                 </h3>
               </div>
 
               <div className="mt-auto">
                 <div className="flex items-center justify-between mb-6">
-                  <span className="text-2xl font-black text-gray-900">
+                  <span className="text-2xl font-black text-gray-900 dark:text-white">
                     ${item.price}
                   </span>
                   <span
-                    className={`text-xs font-bold px-2.5 py-1 rounded-md ${item.stock > 0 ? "bg-green-50 text-green-600" : "bg-red-50 text-red-600"}`}
+                    className={`text-xs font-bold px-2.5 py-1 rounded-md ${item.stock > 0 ? "bg-green-50 dark:bg-green-950/40 text-green-600 dark:text-green-400" : "bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400"}`}
                   >
                     {item.stock > 0 ? "In Stock" : "Out of Stock"}
                   </span>
@@ -155,7 +155,7 @@ const Wishlist = () => {
                 <button
                   onClick={() => handleMoveToCart(item)}
                   disabled={item.stock === 0}
-                  className="w-full flex items-center justify-center gap-3 bg-gray-900 text-white py-4 rounded-2xl font-black hover:bg-orange-600 disabled:bg-gray-200 disabled:text-gray-400 transition-all shadow-xl shadow-gray-100 hover:shadow-orange-200 transform hover:-translate-y-1"
+                  className="w-full flex items-center justify-center gap-3 bg-gray-900 dark:bg-slate-800 text-white py-4 rounded-2xl font-black hover:bg-orange-600 dark:hover:bg-orange-700 disabled:bg-gray-200 dark:disabled:bg-slate-800 disabled:text-gray-400 dark:disabled:text-gray-600 transition-all shadow-xl shadow-gray-100 dark:shadow-none hover:shadow-orange-200 transform hover:-translate-y-1"
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Add to Cart

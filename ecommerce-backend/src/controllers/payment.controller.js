@@ -11,45 +11,45 @@ const createPaymentSession = async (req, res) => {
   try {
     const { products, orderId } = req.body;
 
-    const lineItems = products.map((product) => ({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: product.name,
-          description: product.description || "",
-          images: [product.image || ""],
-        },
-        unit_amount: Math.round(product.price * 100),
-      },
-      quantity: product.quantity,
-    }));
+    const lineItems = products.map((product) => {
+      const productData = {
+        name: product.name,
+      };
 
-    const order = new Order({
-      user: req.user._id,
-      orderItems: products.map((p) => ({
-        product: p._id,
-        quantity: p.quantity,
-        price: p.price,
-      })),
-      totalPrice: products.reduce(
-        (acc, item) => acc + item.price * item.quantity,
-        0,
-      ),
-      shippingAddress: req.body.shippingAddress || {
-        address: "Default Address",
-        city: "Default City",
-        postalCode: "000000",
-        country: "Default Country",
-      },
-      paymentMethod: "card",
-      status: "pending",
+      if (product.description) {
+        productData.description = product.description.substring(0, 499);
+      }
+
+      if (
+        product.image &&
+        typeof product.image === "string" &&
+        product.image.startsWith("http")
+      ) {
+        productData.images = [product.image];
+      }
+
+      return {
+        price_data: {
+          currency: "usd",
+          product_data: productData,
+          unit_amount: Math.round(product.price * 100),
+        },
+        quantity: product.quantity,
+      };
     });
 
-    const savedOrder = await order.save();
+    const order = await Order.findById(orderId);
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        error: "Order not found",
+      });
+    }
+
+    const savedOrder = order;
 
     const backendUrl =
-      process.env.BACKEND_URL ||
-      `http://localhost:${process.env.PORT || 5000}`;
+      process.env.BACKEND_URL || `http://localhost:${process.env.PORT || 5000}`;
     const successUrl = `${backendUrl}/api/v1/payment/success?session_id={CHECKOUT_SESSION_ID}`;
 
     const session = await stripe.checkout.sessions.create({
@@ -110,7 +110,7 @@ const handlePaymentSuccess = async (req, res) => {
         maxAge: 24 * 60 * 60 * 1000,
       });
 
-      res.redirect(`${process.env.BASE_URL}/dashboard?payment=success`);
+      res.redirect(`${process.env.BASE_URL}/payment/success`);
     } else {
       res.redirect(
         `${process.env.BASE_URL}/payment/cancel?error=payment-failed`,

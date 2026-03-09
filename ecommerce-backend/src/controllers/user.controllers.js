@@ -138,7 +138,7 @@ export const login = async (req, res, next) => {
 
 export const logout = (req, res) => {
   res.clearCookie("token");
-  res.json({ message: "Logged out" });
+  res.json({ success: true, message: "Logged out" });
 };
 
 /** User can update self; admin can update any user. */

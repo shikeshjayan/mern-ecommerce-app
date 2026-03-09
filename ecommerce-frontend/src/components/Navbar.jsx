@@ -45,11 +45,14 @@ const Navbar = () => {
         />
       )}
 
-      <nav className="bg-white shadow-lg border-b sticky top-0 z-50">
+      <nav className="bg-white dark:bg-slate-900 shadow-lg border-b dark:border-slate-800 sticky top-0 z-50 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
-            <NavLink to="/" className="text-2xl font-bold text-gray-900">
+            <NavLink
+              to="/"
+              className="text-2xl font-bold text-gray-900 dark:text-white"
+            >
               Cartiqe
             </NavLink>
 
@@ -60,8 +63,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive
-                      ? "text-orange-600 bg-orange-50"
-                      : "text-gray-700 hover:text-orange-600 hover:bg-orange-50"
+                      ? "text-orange-600 bg-orange-50 dark:bg-orange-950/20"
+                      : "text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950/20"
                   }`
                 }
               >
@@ -73,8 +76,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     isActive
-                      ? "text-orange-600 bg-orange-50"
-                      : "text-gray-700 hover:text-orange-600 hover:bg-orange-50"
+                      ? "text-orange-600 bg-orange-50 dark:bg-orange-950/20"
+                      : "text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950/20"
                   }`
                 }
               >
@@ -86,11 +89,11 @@ const Navbar = () => {
                   {/* Wishlist Icon */}
                   <NavLink
                     to="/wishlist"
-                    className="relative p-2 rounded-full hover:bg-red-50 transition-all group"
+                    className="relative p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-950/20 transition-all group"
                   >
-                    <Heart className="w-6 h-6 text-gray-700 group-hover:text-red-500 transition-colors" />
+                    <Heart className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-red-500 transition-colors" />
                     {wishlistItems.length > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] rounded-full h-5 w-5 flex items-center justify-center font-bold border-2 border-white">
+                      <span className="absolute -top-1 -right-1 bg-red-500 text-white text-[10px] rounded-full h-5 w-5 flex items-center justify-center font-bold border-2 border-white dark:border-slate-900">
                         {wishlistItems.length}
                       </span>
                     )}
@@ -99,11 +102,11 @@ const Navbar = () => {
                   {/* Cart Icon */}
                   <NavLink
                     to="/cart"
-                    className="relative p-2 rounded-full hover:bg-orange-50 transition-all group"
+                    className="relative p-2 rounded-full hover:bg-orange-50 dark:hover:bg-orange-950/20 transition-all group"
                   >
-                    <ShoppingCart className="w-6 h-6 text-gray-700 group-hover:text-orange-600 transition-colors" />
+                    <ShoppingCart className="w-6 h-6 text-gray-700 dark:text-gray-300 group-hover:text-orange-600 transition-colors" />
                     {totalItems > 0 && (
-                      <span className="absolute -top-1 -right-1 bg-orange-600 text-white text-[10px] rounded-full h-5 w-5 flex items-center justify-center font-bold border-2 border-white">
+                      <span className="absolute -top-1 -right-1 bg-orange-600 text-white text-[10px] rounded-full h-5 w-5 flex items-center justify-center font-bold border-2 border-white dark:border-slate-900">
                         {totalItems}
                       </span>
                     )}
@@ -116,7 +119,7 @@ const Navbar = () => {
                 <>
                   <NavLink
                     to="/profile"
-                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950/20 transition-colors"
                   >
                     Hi, {user?.name?.split(" ")[0]}
                   </NavLink>
@@ -131,7 +134,7 @@ const Navbar = () => {
                 <>
                   <NavLink
                     to="/login"
-                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 hover:text-orange-600 rounded-md transition-colors"
                   >
                     Login
                   </NavLink>
@@ -149,7 +152,7 @@ const Navbar = () => {
             <div className="md:hidden flex items-center">
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="p-1 rounded-md text-gray-700 hover:text-orange-600 focus:outline-none"
+                className="p-1 rounded-md text-gray-700 dark:text-gray-300 hover:text-orange-600 focus:outline-none"
               >
                 {mobileOpen ? (
                   <X className="w-6 h-6" />
@@ -163,15 +166,15 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200 pb-4">
+          <div className="md:hidden bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-slate-800 pb-4 transition-colors duration-300">
             <div className="px-4 pt-2 pb-3 space-y-1">
               <NavLink
                 to="/"
                 className={({ isActive }) =>
                   `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive
-                      ? "text-orange-600 bg-orange-50"
-                      : "text-gray-700 hover:text-orange-600 hover:bg-orange-50"
+                      ? "text-orange-600 bg-orange-50 dark:bg-orange-950/20"
+                      : "text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950/20"
                   }`
                 }
                 onClick={() => setMobileOpen(false)}
@@ -184,8 +187,8 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `block px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive
-                      ? "text-orange-600 bg-orange-50"
-                      : "text-gray-700 hover:text-orange-600 hover:bg-orange-50"
+                      ? "text-orange-600 bg-orange-50 dark:bg-orange-950/20"
+                      : "text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950/20"
                   }`
                 }
                 onClick={() => setMobileOpen(false)}
@@ -197,7 +200,7 @@ const Navbar = () => {
                 <>
                   <NavLink
                     to="/wishlist"
-                    className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-red-500 hover:bg-red-50 transition-colors"
+                    className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 transition-colors"
                     onClick={() => setMobileOpen(false)}
                   >
                     <div className="relative">
@@ -213,7 +216,7 @@ const Navbar = () => {
 
                   <NavLink
                     to="/cart"
-                    className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                    className="flex items-center space-x-3 px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950/20 transition-colors"
                     onClick={() => setMobileOpen(false)}
                   >
                     <div className="relative">
@@ -233,7 +236,7 @@ const Navbar = () => {
                 <>
                   <NavLink
                     to="/profile"
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-orange-600 hover:bg-orange-50 transition-colors"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-950/20 transition-colors"
                     onClick={() => setMobileOpen(false)}
                   >
                     Profile
@@ -249,7 +252,7 @@ const Navbar = () => {
                 <>
                   <NavLink
                     to="/login"
-                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 transition-colors"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 hover:text-orange-600 transition-colors"
                     onClick={() => setMobileOpen(false)}
                   >
                     Login

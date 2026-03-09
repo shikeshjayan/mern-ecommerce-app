@@ -23,9 +23,11 @@ const formatPrice = (p) => Number(p).toFixed(2);
 
 const Badge = ({ children, variant = "default" }) => {
   const styles = {
-    default: "bg-orange-100 text-orange-700",
-    success: "bg-emerald-100 text-emerald-700",
-    muted: "bg-gray-100 text-gray-600",
+    default:
+      "bg-orange-100 dark:bg-orange-950/40 text-orange-700 dark:text-orange-400",
+    success:
+      "bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400",
+    muted: "bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-400",
   };
   return (
     <span
@@ -42,21 +44,23 @@ const StarRating = ({ rating = 4.5, count = 0 }) => (
       {[1, 2, 3, 4, 5].map((s) => (
         <Star
           key={s}
-          className={`w-4 h-4 ${s <= Math.round(rating) ? "text-amber-400 fill-amber-400" : "text-gray-200 fill-gray-200"}`}
+          className={`w-4 h-4 ${s <= Math.round(rating) ? "text-amber-400 fill-amber-400" : "text-gray-200 dark:text-slate-700 fill-gray-200 dark:fill-slate-700"}`}
         />
       ))}
     </div>
-    <span className="text-sm text-gray-500 font-medium">
+    <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
       {rating.toFixed(1)}
     </span>
     {count > 0 && (
-      <span className="text-sm text-gray-400">({count} reviews)</span>
+      <span className="text-sm text-gray-400 dark:text-gray-500">
+        ({count} reviews)
+      </span>
     )}
   </div>
 );
 
 const Perks = () => (
-  <div className="grid grid-cols-3 gap-3 py-5 border-y border-gray-100">
+  <div className="grid grid-cols-3 gap-3 py-5 border-y border-gray-100 dark:border-slate-800">
     {[
       { icon: Truck, label: "Free Shipping", sub: "Orders over $50" },
       { icon: Shield, label: "2-Year Warranty", sub: "Full coverage" },
@@ -64,13 +68,13 @@ const Perks = () => (
     ].map(({ icon: Icon, label, sub }) => (
       <div
         key={label}
-        className="flex flex-col items-center text-center gap-1.5 p-3 rounded-xl bg-gray-50 hover:bg-orange-50 transition-colors group"
+        className="flex flex-col items-center text-center gap-1.5 p-3 rounded-xl bg-gray-50 dark:bg-slate-900/50 hover:bg-orange-50 dark:hover:bg-orange-950/20 transition-colors group"
       >
         <Icon className="w-5 h-5 text-orange-500 group-hover:scale-110 transition-transform" />
-        <span className="text-xs font-semibold text-gray-800 leading-tight">
+        <span className="text-xs font-semibold text-gray-800 dark:text-gray-200 leading-tight">
           {label}
         </span>
-        <span className="text-xs text-gray-400">{sub}</span>
+        <span className="text-xs text-gray-400 dark:text-gray-500">{sub}</span>
       </div>
     ))}
   </div>
@@ -99,10 +103,10 @@ const SimilarCard = ({ product }) => {
   return (
     <div
       onClick={() => navigate(`/products/${product._id || product.id}`)}
-      className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-orange-200 hover:-translate-y-1"
+      className="group relative bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 dark:border-slate-800 hover:border-orange-200 dark:hover:border-orange-900 hover:-translate-y-1"
     >
       {/* image */}
-      <div className="relative h-44 overflow-hidden bg-gray-50">
+      <div className="relative h-44 overflow-hidden bg-gray-50 dark:bg-slate-800">
         <img
           src={
             imgErr
@@ -120,8 +124,8 @@ const SimilarCard = ({ product }) => {
             ${
               inCart
                 ? "bg-emerald-500 scale-95"
-                : "bg-white hover:bg-orange-500 hover:text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
-            } ${inCart ? "text-white" : "text-gray-700"}`}
+                : "bg-white dark:bg-slate-800 hover:bg-orange-500 hover:text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
+            } ${inCart ? "text-white" : "text-gray-700 dark:text-gray-300"}`}
           title={inCart ? "Remove from cart" : "Add to cart"}
         >
           {inCart ? (
@@ -146,10 +150,10 @@ const SimilarCard = ({ product }) => {
 
       {/* info */}
       <div className="p-4">
-        <p className="text-xs text-gray-400 uppercase tracking-widest mb-1 font-medium">
+        <p className="text-xs text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1 font-medium">
           {product.category || "Product"}
         </p>
-        <h3 className="font-bold text-gray-900 text-sm leading-snug line-clamp-2 mb-2 group-hover:text-orange-600 transition-colors">
+        <h3 className="font-bold text-gray-900 dark:text-white text-sm leading-snug line-clamp-2 mb-2 group-hover:text-orange-600 transition-colors">
           {product.name}
         </h3>
         <div className="flex items-center justify-between">
@@ -166,7 +170,7 @@ const SimilarCard = ({ product }) => {
 /* ─── skeleton loaders ───────────────────────────────────── */
 const Skeleton = ({ className }) => (
   <div
-    className={`animate-pulse bg-linear-to-r from-gray-100 via-gray-200 to-gray-100 bg-size-[200%_100%] rounded-xl ${className}`}
+    className={`animate-pulse bg-gradient-to-r from-gray-100 dark:from-slate-800 via-gray-200 dark:via-slate-700 to-gray-100 dark:to-slate-800 bg-size-[200%_100%] rounded-xl ${className}`}
     style={{
       animation: "shimmer 1.5s infinite linear",
       backgroundPosition: "200% 0",
@@ -250,11 +254,11 @@ const ProductDetail = () => {
   /* ── loading skeleton ── */
   if (loading)
     return (
-      <div className="min-h-screen bg-[#faf9f7] py-10">
+      <div className="min-h-screen bg-[#faf9f7] dark:bg-slate-950 py-10 transition-colors duration-300">
         <div className="max-w-6xl mx-auto px-6">
           <Skeleton className="h-5 w-32 mb-10" />
           <div className="grid md:grid-cols-2 gap-14">
-            <Skeleton className="h-120" />
+            <Skeleton className="h-[480px] w-full" />
             <div className="space-y-5">
               <Skeleton className="h-8 w-3/4" />
               <Skeleton className="h-6 w-1/3" />
@@ -269,10 +273,10 @@ const ProductDetail = () => {
   /* ── not found ── */
   if (!product)
     return (
-      <div className="min-h-screen bg-[#faf9f7] flex items-center justify-center">
+      <div className="min-h-screen bg-[#faf9f7] dark:bg-slate-950 flex items-center justify-center transition-colors duration-300">
         <div className="text-center space-y-4">
-          <Package className="w-16 h-16 text-gray-300 mx-auto" />
-          <h2 className="text-2xl font-bold text-gray-700">
+          <Package className="w-16 h-16 text-gray-300 dark:text-slate-700 mx-auto" />
+          <h2 className="text-2xl font-bold text-gray-700 dark:text-gray-300">
             Product not found
           </h2>
           <Link
@@ -290,7 +294,7 @@ const ProductDetail = () => {
   const isOutOfStock = stockLevel === 0;
 
   return (
-    <div className="min-h-screen bg-[#faf9f7]">
+    <div className="min-h-screen bg-[#faf9f7] dark:bg-slate-950 transition-colors duration-300">
       {/* shimmer keyframe */}
       <style>{`@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}`}</style>
 
@@ -298,7 +302,7 @@ const ProductDetail = () => {
       <div className="max-w-6xl mx-auto px-6 pt-8 pb-2">
         <Link
           to="/products"
-          className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-orange-600 transition-colors font-medium group"
+          className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-orange-600 transition-colors font-medium group"
         >
           <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
           Back to Products
@@ -310,7 +314,7 @@ const ProductDetail = () => {
         <div className="grid md:grid-cols-2 gap-14 items-start">
           {/* LEFT – image gallery */}
           <div className="space-y-4 md:sticky md:top-8">
-            <div className="relative rounded-3xl overflow-hidden bg-white shadow-xl border border-gray-100 group aspect-square">
+            <div className="relative rounded-3xl overflow-hidden bg-white dark:bg-slate-900 shadow-xl border border-gray-100 dark:border-slate-800 group aspect-square">
               <img
                 src={
                   imageError
@@ -343,7 +347,7 @@ const ProductDetail = () => {
                   dispatch(toggleWishlist(product));
                 }}
                 className={`absolute top-4 right-4 p-2.5 rounded-xl shadow-md backdrop-blur-sm transition-all
-                  ${isWishlisted ? "bg-red-500 text-white" : "bg-white/80 hover:bg-white text-gray-500 hover:text-red-400"}`}
+                  ${isWishlisted ? "bg-red-500 text-white" : "bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-700 text-gray-500 hover:text-red-400"}`}
                 title={
                   isWishlisted ? "Remove from wishlist" : "Add to wishlist"
                 }
@@ -371,14 +375,14 @@ const ProductDetail = () => {
                     url: window.location.href,
                   })
                 }
-                className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"
+                className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
                 title="Share"
               >
                 <Share2 className="w-4 h-4" />
               </button>
             </div>
 
-            <h1 className="text-3xl xl:text-4xl font-black text-gray-900 leading-tight tracking-tight">
+            <h1 className="text-3xl xl:text-4xl font-black text-gray-900 dark:text-white leading-tight tracking-tight">
               {product.name}
             </h1>
 
@@ -401,7 +405,7 @@ const ProductDetail = () => {
             </div>
 
             {/* description */}
-            <p className="text-gray-600 leading-relaxed text-[0.95rem]">
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-[0.95rem]">
               {product.description}
             </p>
 
@@ -412,23 +416,23 @@ const ProductDetail = () => {
             <div className="space-y-3">
               {/* qty selector */}
               <div className="flex items-center gap-4">
-                <span className="text-sm font-semibold text-gray-700">
+                <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
                   Quantity
                 </span>
-                <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                <div className="flex items-center border border-gray-200 dark:border-slate-800 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
                   <button
                     onClick={() => setQty((q) => Math.max(1, q - 1))}
-                    className="w-10 h-10 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors text-lg font-bold"
+                    className="w-10 h-10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors text-lg font-bold"
                     disabled={qty <= 1}
                   >
                     −
                   </button>
-                  <span className="w-10 text-center font-bold text-gray-900 tabular-nums">
+                  <span className="w-10 text-center font-bold text-gray-900 dark:text-white tabular-nums">
                     {qty}
                   </span>
                   <button
                     onClick={() => setQty((q) => q + 1)}
-                    className="w-10 h-10 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors text-lg font-bold"
+                    className="w-10 h-10 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors text-lg font-bold"
                     disabled={isOutOfStock}
                   >
                     +
@@ -444,10 +448,10 @@ const ProductDetail = () => {
                   shadow-lg hover:shadow-xl active:scale-[0.98] transition-all duration-200 text-base
                   ${
                     isOutOfStock
-                      ? "bg-gray-300 cursor-not-allowed"
+                      ? "bg-gray-300 dark:bg-slate-800 text-gray-500 cursor-not-allowed"
                       : addedToCart
-                        ? "bg-emerald-500 shadow-emerald-200"
-                        : "bg-orange-600 hover:bg-orange-700 shadow-orange-200"
+                        ? "bg-emerald-500 shadow-emerald-200 dark:shadow-emerald-950/40"
+                        : "bg-orange-600 hover:bg-orange-700 shadow-orange-200 dark:shadow-orange-950/40"
                   }`}
               >
                 {addedToCart ? (
@@ -490,13 +494,13 @@ const ProductDetail = () => {
       </section>
 
       {/* ── similar products ── */}
-      <section className="max-w-6xl mx-auto px-6 py-10 border-t border-gray-100">
+      <section className="max-w-6xl mx-auto px-6 py-10 border-t border-gray-100 dark:border-slate-800">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-2xl font-black text-gray-900">
+            <h2 className="text-2xl font-black text-gray-900 dark:text-white">
               You Might Also Like
             </h2>
-            <p className="text-sm text-gray-400 mt-1">
+            <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
               More products you may enjoy
             </p>
           </div>

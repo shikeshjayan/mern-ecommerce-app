@@ -68,7 +68,7 @@ const Home = () => {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="bg-gray-50 dark:bg-slate-950 min-h-screen transition-colors duration-300">
       {/* HERO SECTION - UNCHANGED */}
       <section className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -90,9 +90,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CATEGORIES - UNCHANGED */}
       <section className="max-w-6xl mx-auto px-6 py-20">
-        <h2 className="text-4xl font-bold mb-16 text-center text-gray-900">
+        <h2 className="text-4xl font-bold mb-16 text-center text-gray-900 dark:text-white">
           Shop by Category
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -100,15 +99,17 @@ const Home = () => {
             <Link
               key={cat.name}
               to={`/products?category=${cat.slug}`}
-              className="group bg-white/70 backdrop-blur-sm shadow-lg rounded-2xl p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 hover:border-orange-200 hover:bg-orange-50"
+              className="group bg-white/70 dark:bg-slate-900/40 backdrop-blur-sm shadow-lg rounded-2xl p-8 text-center hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 dark:border-slate-800 hover:border-orange-200 dark:hover:border-orange-950 hover:bg-orange-50 dark:hover:bg-orange-950/20"
             >
               <div className="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">
                 {cat.icon}
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-orange-600">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-orange-600">
                 {cat.name}
               </h3>
-              <p className="text-gray-500 text-sm">Popular items</p>
+              <p className="text-gray-500 dark:text-gray-400 text-sm">
+                Popular items
+              </p>
             </Link>
           ))}
         </div>
@@ -116,10 +117,10 @@ const Home = () => {
 
       {/* ✅ RAPIDMINER RECOMMENDATIONS - NEW & SEAMLESS */}
       {recommendations.length > 0 && (
-        <section className="py-20 bg-white">
+        <section className="py-20 bg-white dark:bg-slate-900/50">
           <div className="max-w-6xl mx-auto px-6">
             <div className="flex items-center mb-12">
-              <h2 className="text-4xl font-bold text-gray-900 mr-4">
+              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mr-4">
                 🔮 RapidMiner Picks
               </h2>
               <span className="px-4 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold">
@@ -131,9 +132,9 @@ const Home = () => {
                 <Link
                   key={product._id}
                   to={`/products/${product._id}`}
-                  className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all overflow-hidden"
+                  className="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all overflow-hidden"
                 >
-                  <div className="relative h-48 mb-4 rounded-xl overflow-hidden bg-gray-100">
+                  <div className="relative h-48 mb-4 rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-800">
                     <img
                       src={
                         product.image ||
@@ -150,14 +151,14 @@ const Home = () => {
                       AI Pick
                     </div>
                   </div>
-                  <h3 className="font-bold text-lg mb-2 line-clamp-2 text-gray-900 group-hover:text-orange-600">
+                  <h3 className="font-bold text-lg mb-2 line-clamp-2 text-gray-900 dark:text-white group-hover:text-orange-600">
                     {product.name}
                   </h3>
                   <div className="flex justify-between items-center mb-4">
                     <span className="text-2xl font-bold text-orange-600">
                       ${product.price || 0}
                     </span>
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
                       {product.stock || 99} in stock
                     </span>
                   </div>
@@ -178,13 +179,15 @@ const Home = () => {
       )}
 
       {/* TRENDING PRODUCTS - UNCHANGED */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-slate-950">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Trending Products
             </h2>
-            <p className="text-xl text-gray-600">Don't miss these hot deals</p>
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+              Don't miss these hot deals
+            </p>
           </div>
 
           {error ? (
@@ -204,9 +207,9 @@ const Home = () => {
                   <Link
                     key={p._id}
                     to={`/products/${p._id}`}
-                    className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all overflow-hidden"
+                    className="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all overflow-hidden"
                   >
-                    <div className="relative h-56 mb-6 rounded-xl overflow-hidden bg-gray-100">
+                    <div className="relative h-56 mb-6 rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-800">
                       <img
                         src={
                           p.image ||
@@ -225,14 +228,14 @@ const Home = () => {
                         </div>
                       )}
                     </div>
-                    <h3 className="font-bold text-lg mb-3 line-clamp-2 text-gray-900 group-hover:text-orange-600">
+                    <h3 className="font-bold text-lg mb-3 line-clamp-2 text-gray-900 dark:text-white group-hover:text-orange-600">
                       {p.name}
                     </h3>
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-2xl font-bold text-orange-600">
                         ${p.price}
                       </span>
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
                         {p.stock} in stock
                       </span>
                     </div>
@@ -264,42 +267,42 @@ const Home = () => {
       </section>
 
       {/* FEATURES - UNCHANGED */}
-      <section className="bg-gray-100 py-20">
+      <section className="bg-gray-100 dark:bg-slate-900 py-20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900">
+          <h2 className="text-4xl font-bold text-center mb-16 text-gray-900 dark:text-white">
             Why Shop With Us?
           </h2>
           <div className="grid md:grid-cols-3 gap-12">
             <div className="text-center group hover:-translate-y-2 transition-all duration-300">
-              <div className="w-20 h-20 bg-orange-100 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:bg-orange-200">
-                🚚
+              <div className="w-20 h-20 bg-orange-100 dark:bg-orange-950/30 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:bg-orange-200 dark:group-hover:bg-orange-950/50">
+                <span className="text-3xl">🚚</span>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
                 Free Shipping
               </h3>
-              <p className="text-lg text-gray-600 max-w-md mx-auto leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto leading-relaxed">
                 Free delivery on orders over $50. Arrives in 2-3 days.
               </p>
             </div>
             <div className="text-center group hover:-translate-y-2 transition-all duration-300">
-              <div className="w-20 h-20 bg-green-100 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:bg-green-200">
-                🔒
+              <div className="w-20 h-20 bg-green-100 dark:bg-green-950/30 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:bg-green-200 dark:group-hover:bg-green-950/50">
+                <span className="text-3xl">🔒</span>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
                 Secure Payment
               </h3>
-              <p className="text-lg text-gray-600 max-w-md mx-auto leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto leading-relaxed">
                 256-bit SSL encryption. Trusted by 1M+ customers worldwide.
               </p>
             </div>
             <div className="text-center group hover:-translate-y-2 transition-all duration-300">
-              <div className="w-20 h-20 bg-blue-100 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:bg-blue-200">
-                ↩️
+              <div className="w-20 h-20 bg-blue-100 dark:bg-blue-950/30 rounded-2xl mx-auto mb-6 flex items-center justify-center group-hover:bg-blue-200 dark:group-hover:bg-blue-950/50">
+                <span className="text-3xl">↩️</span>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
                 Easy Returns
               </h3>
-              <p className="text-lg text-gray-600 max-w-md mx-auto leading-relaxed">
+              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-md mx-auto leading-relaxed">
                 30-day hassle-free returns. Full refund guaranteed.
               </p>
             </div>

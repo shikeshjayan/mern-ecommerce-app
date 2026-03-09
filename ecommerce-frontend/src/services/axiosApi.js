@@ -16,6 +16,7 @@ export const getUserOrders = async () => {
 };
 
 export const makePayment = async (body) => {
+  // body should contain: { products: Array, orderId: String }
   const response = await apiClient.post("/api/v1/payment/makepayment", body);
   return response.data;
 };

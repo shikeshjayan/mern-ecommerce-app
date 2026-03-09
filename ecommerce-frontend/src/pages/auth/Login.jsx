@@ -56,8 +56,11 @@ const Login = () => {
       });
 
       const user = res.data.user;
+      const token = res.data.token;
       const id = user.id || user._id;
-      dispatch(loginSuccess(user));
+
+      localStorage.setItem("token", token);
+      dispatch(loginSuccess({ user, token }));
       dispatch(loadCart(id));
       dispatch(loadWishlist(id));
 
@@ -85,14 +88,16 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-md mx-auto">
-        <div className="bg-white shadow-xl rounded-lg p-8 border border-gray-200">
+        <div className="bg-white dark:bg-slate-900 shadow-xl rounded-lg p-8 border border-gray-200 dark:border-slate-800 transition-colors duration-300">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 transition-colors">
               Welcome Back
             </h1>
-            <p className="text-gray-600">Sign in to your account</p>
+            <p className="text-gray-600 dark:text-gray-400 transition-colors">
+              Sign in to your account
+            </p>
           </div>
 
           {error && (
@@ -103,14 +108,14 @@ const Login = () => {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors">
                 Email Address
               </label>
               <input
                 type="email"
                 autoComplete="email"
                 placeholder="you@example.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
                 value={credentials.email}
                 onChange={(e) =>
                   setCredentials({ ...credentials, email: e.target.value })
@@ -121,7 +126,7 @@ const Login = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors">
                 Password
               </label>
               <div className="relative">
@@ -129,7 +134,7 @@ const Login = () => {
                   type={credentials.showPassword ? "text" : "password"}
                   autoComplete="current-password"
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
                   value={credentials.password}
                   onChange={(e) =>
                     setCredentials({ ...credentials, password: e.target.value })
@@ -139,7 +144,7 @@ const Login = () => {
                 />
                 <button
                   type="button"
-                  className="absolute right-3 top-3 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="absolute right-3 top-3 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                   onClick={() =>
                     setCredentials((prev) => ({
                       ...prev,
@@ -153,10 +158,10 @@ const Login = () => {
             </div>
 
             <div className="flex items-center justify-between text-sm">
-              <label className="flex items-center text-gray-600 cursor-pointer">
+              <label className="flex items-center text-gray-600 dark:text-gray-400 cursor-pointer transition-colors">
                 <input
                   type="checkbox"
-                  className="rounded border-gray-300 text-orange-600 mr-2 h-4 w-4 focus:ring-orange-500"
+                  className="rounded border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-orange-600 mr-2 h-4 w-4 focus:ring-orange-500"
                   checked={rememberMe}
                   onChange={handleRememberMeChange}
                 />
@@ -179,11 +184,11 @@ const Login = () => {
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-600 mt-8">
+          <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-8 transition-colors">
             Don't have an account?{" "}
             <Link
               to="/register"
-              className="text-orange-600 font-semibold hover:text-orange-700 transition-colors"
+              className="text-orange-600 font-semibold hover:text-orange-700 dark:hover:text-orange-400 transition-colors"
             >
               Sign up here
             </Link>

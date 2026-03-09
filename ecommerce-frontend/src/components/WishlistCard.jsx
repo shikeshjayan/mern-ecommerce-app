@@ -16,41 +16,51 @@ const WishlistCard = ({ item, onRemove, onAddToCart }) => {
   };
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl group transition-all duration-300 hover:-translate-y-1">
-      <div className="relative aspect-square overflow-hidden bg-gray-50">
+    <div className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-xl group transition-all duration-300 hover:-translate-y-1">
+      <div className="relative aspect-square overflow-hidden bg-gray-50 dark:bg-slate-800">
         <img
-          src={imgErr ? "https://placehold.co/400x400?text=No+Image" : item.image}
+          src={
+            imgErr ? "https://placehold.co/400x400?text=No+Image" : item.image
+          }
           alt={item.name}
           onError={() => setImgErr(true)}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <button
           onClick={() => onRemove(item)}
-          className="absolute top-3 right-3 p-2 bg-white/90 backdrop-blur-sm rounded-xl text-red-400 hover:text-red-600 hover:bg-white shadow-md opacity-0 group-hover:opacity-100 transition-all"
+          className="absolute top-3 right-3 p-2 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-xl text-red-400 hover:text-red-600 hover:bg-white dark:hover:bg-slate-800 shadow-md opacity-0 group-hover:opacity-100 transition-all"
           title="Remove from wishlist"
         >
           <Trash2 className="w-4 h-4" />
         </button>
       </div>
       <div className="p-4">
-        <p className="font-bold text-gray-800 text-sm line-clamp-1 mb-1">{item.name}</p>
-        <p className="text-orange-600 font-black text-xl mb-4">${fmt(item.price)}</p>
+        <p className="font-bold text-gray-800 dark:text-white text-sm line-clamp-1 mb-1 transition-colors">
+          {item.name}
+        </p>
+        <p className="text-orange-600 dark:text-orange-400 font-black text-xl mb-4 transition-colors">
+          ${fmt(item.price)}
+        </p>
         <div className="flex gap-2">
           <Link
             to={`/products/${item._id || item.id}`}
-            className="flex-1 h-10 flex items-center justify-center text-xs font-black text-gray-700 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors"
+            className="flex-1 h-10 flex items-center justify-center text-xs font-black text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-slate-700 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors"
           >
             View
           </Link>
           <button
             onClick={handleCart}
             className={`flex-1 h-10 flex items-center justify-center gap-1.5 text-xs font-black rounded-xl transition-all
-              ${added ? "bg-emerald-500 text-white" : "bg-gray-900 hover:bg-black text-white"}`}
+              ${added ? "bg-emerald-500 text-white" : "bg-gray-900 dark:bg-slate-800 hover:bg-black dark:hover:bg-slate-700 text-white"}`}
           >
             {added ? (
-              <><CheckCircle className="w-3.5 h-3.5" /> Added</>
+              <>
+                <CheckCircle className="w-3.5 h-3.5" /> Added
+              </>
             ) : (
-              <><ShoppingCart className="w-3.5 h-3.5" /> Add</>
+              <>
+                <ShoppingCart className="w-3.5 h-3.5" /> Add
+              </>
             )}
           </button>
         </div>

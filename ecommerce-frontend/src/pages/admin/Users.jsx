@@ -72,9 +72,9 @@ const Users = () => {
   const getAvatarColor = (role) => {
     switch (role) {
       case "admin":
-        return "bg-purple-100 text-purple-700";
+        return "bg-purple-100 dark:bg-purple-950/40 text-purple-700 dark:text-purple-400";
       default:
-        return "bg-blue-100 text-blue-700";
+        return "bg-blue-100 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400";
     }
   };
 
@@ -90,10 +90,10 @@ const Users = () => {
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight transition-colors">
             User Management
           </h1>
-          <p className="text-gray-500 mt-1">
+          <p className="text-gray-500 dark:text-gray-400 mt-1 transition-colors">
             Manage customers, admins, and permissions across your platform.
           </p>
         </div>
@@ -111,57 +111,63 @@ const Users = () => {
             <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">
               Total Users
             </p>
-            <h3 className="text-3xl font-bold text-gray-900 mt-1">{totalUsers}</h3>
+            <h3 className="text-3xl font-bold text-gray-900 mt-1">
+              {totalUsers}
+            </h3>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center hover:shadow-md transition-shadow relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 opacity-5">
-            <UserCheck className="h-24 w-24" />
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 flex items-center hover:shadow-md transition-all relative overflow-hidden transition-colors">
+          <div className="absolute top-0 right-0 p-4 opacity-5 dark:opacity-10">
+            <UserCheck className="h-24 w-24 dark:text-gray-400" />
           </div>
-          <div className="h-14 w-14 rounded-full bg-emerald-50 flex items-center justify-center mr-4 relative z-10">
-            <UserCheck className="h-7 w-7 text-emerald-500" />
+          <div className="h-14 w-14 rounded-full bg-emerald-50 dark:bg-emerald-950/20 flex items-center justify-center mr-4 relative z-10 transition-colors">
+            <UserCheck className="h-7 w-7 text-emerald-500 dark:text-emerald-400" />
           </div>
-          <div className="relative z-10">
-            <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+          <div className="relative z-10 transition-colors">
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
               Active Users
             </p>
-            <h3 className="text-3xl font-bold text-gray-900 mt-1">{activeUsers}</h3>
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mt-1">
+              {activeUsers}
+            </h3>
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center hover:shadow-md transition-shadow relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 opacity-5">
-            <Shield className="h-24 w-24" />
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 flex items-center hover:shadow-md transition-all relative overflow-hidden transition-colors">
+          <div className="absolute top-0 right-0 p-4 opacity-5 dark:opacity-10">
+            <Shield className="h-24 w-24 dark:text-gray-400" />
           </div>
-          <div className="h-14 w-14 rounded-full bg-purple-50 flex items-center justify-center mr-4 relative z-10">
-            <Shield className="h-7 w-7 text-purple-500" />
+          <div className="h-14 w-14 rounded-full bg-purple-50 dark:bg-purple-950/20 flex items-center justify-center mr-4 relative z-10 transition-colors">
+            <Shield className="h-7 w-7 text-purple-500 dark:text-purple-400" />
           </div>
-          <div className="relative z-10">
-            <p className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+          <div className="relative z-10 transition-colors">
+            <p className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
               Admins
             </p>
-            <h3 className="text-3xl font-bold text-gray-900 mt-1">{admins}</h3>
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mt-1">
+              {admins}
+            </h3>
           </div>
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        <div className="p-6 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center bg-white gap-4">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800 overflow-hidden transition-colors">
+        <div className="p-6 border-b border-gray-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center bg-white dark:bg-slate-900 gap-4 transition-colors">
           <div className="relative w-full sm:w-80">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 h-5 w-5" />
             <input
               type="text"
               placeholder="Search users by name or email..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm"
+              className="w-full pl-10 pr-4 py-2 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-sm transition-colors"
             />
           </div>
           <select
             value={filterRole}
             onChange={(e) => setFilterRole(e.target.value)}
-            className="flex items-center text-sm font-medium text-gray-600 border border-gray-200 bg-white px-3 py-2 rounded-lg hover:bg-gray-50 w-full sm:w-auto"
+            className="flex items-center text-sm font-medium text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors w-full sm:w-auto outline-none focus:ring-2 focus:ring-indigo-500"
           >
             <option value="all">All Roles</option>
             <option value="user">Customers</option>
@@ -171,7 +177,7 @@ const Users = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-gray-50/50 text-gray-500 text-xs uppercase tracking-wider">
+              <tr className="bg-gray-50/50 dark:bg-slate-800/50 text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider transition-colors">
                 <th className="px-6 py-4 font-semibold">User</th>
                 <th className="px-6 py-4 font-semibold">Contact</th>
                 <th className="px-6 py-4 font-semibold">Role</th>
@@ -180,29 +186,29 @@ const Users = () => {
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-gray-100 dark:divide-slate-800 transition-colors">
               {filteredUsers.map((user) => (
                 <tr
                   key={user._id}
-                  className="hover:bg-gray-50/50 transition-colors group"
+                  className="hover:bg-gray-50/50 dark:hover:bg-slate-800/50 transition-colors group"
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div
                         className={`h-10 w-10 rounded-full flex items-center justify-center font-bold text-sm mr-3 ${getAvatarColor(
-                          user.role
-                        )} shadow-sm border border-white`}
+                          user.role,
+                        )} shadow-sm border border-white dark:border-slate-800 transition-colors`}
                       >
                         {getAvatar(user.name)}
                       </div>
-                      <span className="font-semibold text-gray-900">
+                      <span className="font-semibold text-gray-900 dark:text-white transition-colors">
                         {user.name}
                       </span>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center text-gray-600 text-sm">
-                      <Mail className="h-4 w-4 mr-2 text-gray-400" />
+                    <div className="flex items-center text-gray-600 dark:text-gray-400 text-sm transition-colors">
+                      <Mail className="h-4 w-4 mr-2 text-gray-400 dark:text-gray-500 transition-colors" />
                       {user.email}
                     </div>
                   </td>
@@ -219,18 +225,18 @@ const Users = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {user.isActive !== false ? (
-                      <span className="inline-flex items-center text-sm text-emerald-600 font-medium">
+                      <span className="inline-flex items-center text-sm text-emerald-600 dark:text-emerald-400 font-medium transition-colors">
                         <span className="w-2 h-2 rounded-full bg-emerald-500 mr-2"></span>
                         Active
                       </span>
                     ) : (
-                      <span className="inline-flex items-center text-sm text-red-600 font-medium">
+                      <span className="inline-flex items-center text-sm text-red-600 dark:text-red-400 font-medium transition-colors">
                         <span className="w-2 h-2 rounded-full bg-red-500 mr-2"></span>
                         Inactive
                       </span>
                     )}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400 transition-colors">
                     {user.createdAt
                       ? new Date(user.createdAt).toLocaleDateString("en-US", {
                           month: "short",
@@ -243,7 +249,7 @@ const Users = () => {
                     <div className="flex items-center justify-end space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button
                         onClick={() => openDeleteModal(user)}
-                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                        className="p-2 text-red-500 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-colors"
                         title="Delete User"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -257,7 +263,7 @@ const Users = () => {
                 <tr>
                   <td
                     colSpan="6"
-                    className="px-6 py-12 text-center text-gray-500"
+                    className="px-6 py-12 text-center text-gray-500 dark:text-gray-400 transition-colors"
                   >
                     {searchQuery || filterRole !== "all"
                       ? "No users found matching your criteria."
@@ -268,7 +274,7 @@ const Users = () => {
             </tbody>
           </table>
         </div>
-        <div className="px-6 py-4 border-t border-gray-100 bg-gray-50/30 flex items-center justify-between text-sm text-gray-500">
+        <div className="px-6 py-4 border-t border-gray-100 dark:border-slate-800 bg-gray-50/30 dark:bg-slate-800/30 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 transition-colors">
           <div>
             Showing {filteredUsers.length} of {totalUsers} users
           </div>

@@ -39,8 +39,9 @@ const ProductCard = ({ product }) => {
   return (
     <Link
       to={`/products/${product._id}`}
-      className="group bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden">
-      <div className="relative h-56 mb-6 rounded-xl overflow-hidden bg-gray-100">
+      className="group bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden"
+    >
+      <div className="relative h-56 mb-6 rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-800">
         <img
           src={getImageSrc()}
           alt={product.name}
@@ -53,10 +54,11 @@ const ProductCard = ({ product }) => {
         <button
           onClick={handleToggleWishlist}
           className={`absolute top-3 left-3 p-2 rounded-full shadow-lg transition-all duration-300 z-10 ${
-            isWishlisted 
-              ? "bg-red-500 text-white" 
-              : "bg-white/80 text-gray-400 hover:text-red-500 hover:bg-white"
-          }`}>
+            isWishlisted
+              ? "bg-red-500 text-white"
+              : "bg-white/80 dark:bg-slate-800/80 text-gray-400 dark:text-gray-500 hover:text-red-500 hover:bg-white dark:hover:bg-slate-700"
+          }`}
+        >
           <Heart className={`w-5 h-5 ${isWishlisted ? "fill-current" : ""}`} />
         </button>
 
@@ -67,7 +69,7 @@ const ProductCard = ({ product }) => {
         )}
       </div>
 
-      <h3 className="font-bold text-lg mb-3 line-clamp-2 text-gray-900 group-hover:text-orange-600">
+      <h3 className="font-bold text-lg mb-3 line-clamp-2 text-gray-900 dark:text-white group-hover:text-orange-600">
         {product.name}
       </h3>
 
@@ -75,7 +77,7 @@ const ProductCard = ({ product }) => {
         <span className="text-2xl font-bold text-orange-600">
           ${product.price}
         </span>
-        <span className="text-sm text-gray-500">
+        <span className="text-sm text-gray-500 dark:text-gray-400">
           {product.stock || 0} in stock
         </span>
       </div>
@@ -83,8 +85,13 @@ const ProductCard = ({ product }) => {
       <button
         onClick={handleAddToCart}
         disabled={product.stock === 0}
-        className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-        {product.stock === 0 ? "Out of Stock" : (!isAuthenticated ? "Login to Add" : "Add to Cart")}
+        className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+      >
+        {product.stock === 0
+          ? "Out of Stock"
+          : !isAuthenticated
+            ? "Login to Add"
+            : "Add to Cart"}
       </button>
     </Link>
   );

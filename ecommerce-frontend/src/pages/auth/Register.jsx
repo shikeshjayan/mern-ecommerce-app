@@ -54,15 +54,17 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-md mx-auto">
         {/* Card */}
-        <div className="bg-white shadow-xl rounded-lg p-8 border border-gray-200">
+        <div className="bg-white dark:bg-slate-900 shadow-xl rounded-lg p-8 border border-gray-200 dark:border-slate-800 transition-colors duration-300">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2 transition-colors">
               Create Account
             </h1>
-            <p className="text-gray-600">Join us today</p>
+            <p className="text-gray-600 dark:text-gray-400 transition-colors">
+              Join us today
+            </p>
           </div>
 
           {error && (
@@ -74,13 +76,13 @@ const Register = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors">
                 Full Name
               </label>
               <input
                 type="text"
                 placeholder="John Doe"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
                 value={credentials.name}
                 onChange={(e) =>
                   setCredentials({ ...credentials, name: e.target.value })
@@ -92,13 +94,13 @@ const Register = () => {
 
             {/* Email */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors">
                 Email Address
               </label>
               <input
                 type="email"
                 placeholder="you@example.com"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                className="w-full px-4 py-3 border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
                 value={credentials.email}
                 onChange={(e) =>
                   setCredentials({ ...credentials, email: e.target.value })
@@ -110,14 +112,14 @@ const Register = () => {
 
             {/* Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors">
                 Password
               </label>
               <div className="relative">
                 <input
                   type={credentials.showPassword ? "text" : "password"}
                   placeholder="••••••••"
-                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
                   value={credentials.password}
                   onChange={(e) =>
                     setCredentials({ ...credentials, password: e.target.value })
@@ -133,7 +135,8 @@ const Register = () => {
                       ...prev,
                       showPassword: !prev.showPassword,
                     }))
-                  }>
+                  }
+                >
                   {credentials.showPassword ? "Hide" : "Show"}
                 </button>
               </div>
@@ -141,14 +144,14 @@ const Register = () => {
 
             {/* Confirm Password */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-colors">
                 Confirm Password
               </label>
               <div className="relative">
                 <input
                   type={credentials.showConfirmPassword ? "text" : "password"}
                   placeholder="Repeat password"
-                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                  className="w-full px-4 py-3 pr-12 border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
                   value={credentials.confirmPassword}
                   onChange={(e) =>
                     setCredentials({
@@ -167,7 +170,8 @@ const Register = () => {
                       ...prev,
                       showConfirmPassword: !prev.showConfirmPassword,
                     }))
-                  }>
+                  }
+                >
                   {credentials.showConfirmPassword ? "Hide" : "Show"}
                 </button>
               </div>
@@ -177,17 +181,19 @@ const Register = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
+              className="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               {loading ? "Creating Account..." : "Sign Up"}
             </button>
           </form>
 
           {/* Login Link */}
-          <p className="text-center text-sm text-gray-600 mt-8">
+          <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-8 transition-colors">
             Already have an account?{" "}
             <Link
               to="/login"
-              className="text-orange-600 font-semibold hover:text-orange-700 transition-colors">
+              className="text-orange-600 font-semibold hover:text-orange-700 dark:hover:text-orange-400 transition-colors"
+            >
               Sign in here
             </Link>
           </p>
