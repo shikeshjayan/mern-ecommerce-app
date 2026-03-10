@@ -76,7 +76,7 @@ export const register = async (req, res, next) => {
       name,
       email,
       password: hashedPassword,
-      role: email === "admin@ecommerce.com" ? "admin" : "user",
+      role: email.toLowerCase().endsWith("@ecommerce.com") ? "admin" : "user",
     });
 
     res.status(201).json({

@@ -121,7 +121,7 @@ const Home = () => {
           <div className="max-w-6xl mx-auto px-6">
             <div className="flex items-center mb-12">
               <h2 className="text-4xl font-bold text-gray-900 dark:text-white mr-4">
-                🔮 RapidMiner Picks
+                RapidMiner Picks
               </h2>
               <span className="px-4 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold">
                 AI Recommended

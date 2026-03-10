@@ -184,7 +184,7 @@ const Analytics = () => {
       <div className="p-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/20 dark:to-purple-950/20 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 transition-colors">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white transition-colors">
-            RapidMiner Recommendations
+            Recommendations
           </h3>
           <span className="text-sm text-indigo-600 dark:text-indigo-400 font-medium transition-colors">
             AI-Powered

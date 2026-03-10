@@ -53,7 +53,7 @@ const Navbar = () => {
               to="/"
               className="text-2xl font-bold text-gray-900 dark:text-white"
             >
-              Cartiqe
+              CartiQE
             </NavLink>
 
             {/* Desktop Menu */}
